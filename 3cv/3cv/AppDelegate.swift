@@ -27,10 +27,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         if #available(OSX 10.15, *) {
             print("MacOS catalalina detected, proceed")
         } else {
-            let warning = NSLocalizedString("3cv does not work with version \(String(ProcessInfo.processInfo.operatingSystemVersion.minorVersion)) of MacOS", comment: "Quit without saves error question message")
+            let warning = NSLocalizedString("Invalid Version of MacOS", comment: "Quit without saves error question message")
+            let info = NSLocalizedString("3cv is not currently compatible with version 10.\(String(ProcessInfo.processInfo.operatingSystemVersion.minorVersion)) of MacOS. Please consider upgrading to version 10.15 (Catalina), or later", comment: "Quit without saves error question info");
+            
             let quitButton = NSLocalizedString("Quit application", comment: "Quit anyway button title")
             let alert = NSAlert()
             alert.messageText = warning
+            alert.informativeText = info
             alert.addButton(withTitle: quitButton)
             
             let answer = alert.runModal()
