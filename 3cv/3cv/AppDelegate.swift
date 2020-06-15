@@ -38,10 +38,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             
             let answer = alert.runModal()
             if answer == .alertFirstButtonReturn {
-                print("1b")
                 NSApplication.shared.terminate(self)
             } else {
-                print("1x")
                 NSApplication.shared.terminate(self)
             }
         }
