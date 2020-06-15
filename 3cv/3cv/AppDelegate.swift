@@ -23,7 +23,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // Insert code here to tear down your application
     }
     
-    func validateOperatingSystem() throws {
+    func validateOperatingSystem() {
         if #available(OSX 10.15, *) {
             print("MacOS catalalina detected, proceed")
         } else {
@@ -40,7 +40,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             if answer == .alertFirstButtonReturn {
                 NSApplication.shared.terminate(self)
             } else {
-                NSApplication.shared.terminate(self)
+                validateOperatingSystem()
             }
         }
     }
