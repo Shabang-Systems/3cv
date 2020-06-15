@@ -37,10 +37,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             alert.addButton(withTitle: quitButton)
             
             let answer = alert.runModal()
-            if answer == .alertSecondButtonReturn {
-                throw AppDelegate.self.operatingSystemErrors.InvalidVersion(version: String(ProcessInfo.processInfo.operatingSystemVersion.minorVersion))
+            if answer == .alertFirstButtonReturn {
+                print("1b")
+                NSApplication.shared.terminate(self)
             } else {
-                throw AppDelegate.self.operatingSystemErrors.InvalidVersion(version: String(ProcessInfo.processInfo.operatingSystemVersion.minorVersion))
+                print("1x")
+                NSApplication.shared.terminate(self)
             }
         }
     }
@@ -145,7 +147,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // If we got here, it is time to quit.
             return .terminateNow
         } else {
-            try! validateOperatingSystem()
             return .terminateNow
         }
     }
