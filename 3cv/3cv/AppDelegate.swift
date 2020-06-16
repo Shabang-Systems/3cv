@@ -16,7 +16,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        try! validateOperatingSystem() // Checks current MacOS version and throws an error if it isn't good enough
+        validateOperatingSystem() // Checks current MacOS version and throws an error if it isn't good enough
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
