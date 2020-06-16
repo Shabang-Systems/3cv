@@ -11,9 +11,6 @@ import Cocoa
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
 
-    enum operatingSystemErrors: Error{
-        case InvalidVersion(version: String)
-    }
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         validateOperatingSystem() // Checks current MacOS version and throws an error if it isn't good enough
@@ -22,12 +19,16 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationWillTerminate(_ aNotification: Notification) {
         // Insert code here to tear down your application
     }
-    
+    // MARK: - Operating system detection
+    enum operatingSystemErrors: Error {
+        case InvalidVersion(version: String)
+    }
+
     func validateOperatingSystem() {
         if #available(OSX 10.15, *) {
             print("MacOS catalalina detected, proceed")
         } else {
-            let warning = NSLocalizedString("Invalid Version of MacOS", comment: "Quit without saves error question message")
+            let warning = NSLocalizedString("Incompatible Version of MacOS", comment: "Quit without saves error question message")
             let info = NSLocalizedString("3cv is not currently compatible with version 10.\(String(ProcessInfo.processInfo.operatingSystemVersion.minorVersion)) of MacOS. Please consider upgrading to version 10.15 (Catalina), or later", comment: "Quit without saves error question info");
             
             let quitButton = NSLocalizedString("Quit application", comment: "Quit anyway button title")
@@ -94,6 +95,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             }
         }
     }
+    
     @available(OSX 10.15, *)
     func windowWillReturnUndoManager(window: NSWindow) -> UndoManager? {
         // Returns the NSUndoManager for the application. In this case, the manager returned is that of the managed object context for the application.
@@ -105,8 +107,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         if #available(OSX 10.15, *) {
             let context = persistentContainer.viewContext
 
-
-        
         if !context.commitEditing() {
             NSLog("\(NSStringFromClass(type(of: self))) unable to commit editing to terminate")
             return .terminateCancel
@@ -149,4 +149,3 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
 }
-
