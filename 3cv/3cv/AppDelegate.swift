@@ -37,11 +37,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             let alert = NSAlert()
             alert.messageText = warning
             alert.informativeText = info
-            alert.addButton(withTitle: quitButton)
             alert.addButton(withTitle: continueButton)
+            alert.addButton(withTitle: quitButton)
             
             let answer = alert.runModal()
-            if answer == .alertFirstButtonReturn {
+            if answer == .alertSecondButtonReturn {
                 NSApplication.shared.terminate(self)
             } else {
                 print("Warning: 3cv started without cloud sync")
