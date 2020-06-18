@@ -29,19 +29,22 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             print("MacOS catalalina detected, proceed")
         } else {
             let warning = NSLocalizedString("Incompatible Version of MacOS", comment: "Quit without saves error question message")
-            let info = NSLocalizedString("3cv is not currently compatible with version 10.\(String(ProcessInfo.processInfo.operatingSystemVersion.minorVersion)) of MacOS. Please consider upgrading to version 10.15 (Catalina), or later", comment: "Quit without saves error question info");
+            let info = NSLocalizedString("3cv cloud sync is not currently compatible with version 10.\(String(ProcessInfo.processInfo.operatingSystemVersion.minorVersion)) of MacOS. Please consider upgrading to version 10.15 (Catalina), or later", comment: "Quit without saves error question info");
             
             let quitButton = NSLocalizedString("Quit application", comment: "Quit anyway button title")
+            let continueButton = NSLocalizedString("Continue", comment: "Continue anyway button title")
+
             let alert = NSAlert()
             alert.messageText = warning
             alert.informativeText = info
             alert.addButton(withTitle: quitButton)
+            alert.addButton(withTitle: continueButton)
             
             let answer = alert.runModal()
             if answer == .alertFirstButtonReturn {
                 NSApplication.shared.terminate(self)
             } else {
-                validateOperatingSystem()
+                print("Warning: 3cv started without cloud sync")
             }
         }
     }
