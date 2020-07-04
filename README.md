@@ -1,2 +1,2 @@
 # 3cv-clipboard-manager
-A free flipboard manager for Mac.
+A free clipboard manager for Mac.
