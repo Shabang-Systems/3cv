@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9564A38024B1396100DAD8DC /* WindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9564A37F24B1396100DAD8DC /* WindowController.swift */; };
 		B6C8BB842497267B00FD480E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C8BB832497267B00FD480E /* AppDelegate.swift */; };
 		B6C8BB862497267B00FD480E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C8BB852497267B00FD480E /* ViewController.swift */; };
 		B6C8BB892497267B00FD480E /* _cv.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B6C8BB872497267B00FD480E /* _cv.xcdatamodeld */; };
@@ -15,6 +16,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9564A37F24B1396100DAD8DC /* WindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowController.swift; sourceTree = "<group>"; };
 		B6C8BB802497267B00FD480E /* 3cv.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = 3cv.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6C8BB832497267B00FD480E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B6C8BB852497267B00FD480E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -59,6 +61,7 @@
 				B6C8BB852497267B00FD480E /* ViewController.swift */,
 				B6C8BB8A2497268100FD480E /* Assets.xcassets */,
 				B6C8BB8C2497268100FD480E /* Main.storyboard */,
+				9564A37F24B1396100DAD8DC /* WindowController.swift */,
 				B6C8BB8F2497268100FD480E /* Info.plist */,
 				B6C8BB902497268100FD480E /* _cv.entitlements */,
 				B6C8BB872497267B00FD480E /* _cv.xcdatamodeld */,
@@ -137,6 +140,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B6C8BB862497267B00FD480E /* ViewController.swift in Sources */,
+				9564A38024B1396100DAD8DC /* WindowController.swift in Sources */,
 				B6C8BB892497267B00FD480E /* _cv.xcdatamodeld in Sources */,
 				B6C8BB842497267B00FD480E /* AppDelegate.swift in Sources */,
 			);
@@ -274,9 +278,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = 3cv/_cv.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = Q46J9P9CJ3;
+				DEVELOPMENT_TEAM = 8DKMP5D8LR;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = 3cv/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -295,9 +300,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = 3cv/_cv.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = Q46J9P9CJ3;
+				DEVELOPMENT_TEAM = 8DKMP5D8LR;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = 3cv/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
