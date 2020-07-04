@@ -685,11 +685,17 @@
         <scene sceneID="R2V-B0-nI4">
             <objects>
                 <windowController id="B8D-0N-5wS" sceneMemberID="viewController">
-                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" appearanceType="darkAqua" animationBehavior="default" tabbingMode="disallowed" titlebarAppearsTransparent="YES" titleVisibility="hidden" id="IQv-IB-iLA">
-                        <windowStyleMask key="styleMask" titled="YES"/>
+                    <window key="window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" appearanceType="darkAqua" animationBehavior="default" tabbingMode="disallowed" titlebarAppearsTransparent="YES" titleVisibility="hidden" id="IQv-IB-iLA">
+                        <windowStyleMask key="styleMask" titled="YES" fullSizeContentView="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-                        <rect key="contentRect" x="196" y="240" width="296" height="355"/>
-                        <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
+                        <rect key="contentRect" x="681" y="263" width="330" height="510"/>
+                        <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.maskToBounds" value="YES"/>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="165"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                         <connections>
                             <outlet property="delegate" destination="B8D-0N-5wS" id="98r-iN-zZc"/>
                         </connections>
@@ -700,20 +706,35 @@
                 </windowController>
                 <customObject id="Oky-zY-oP4" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="75" y="188"/>
+            <point key="canvasLocation" x="75.5" y="265"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="hIz-AP-VOD">
             <objects>
                 <viewController id="XfG-lQ-9wD" customClass="ViewController" customModule="_cv" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" appearanceType="darkAqua" id="m2S-Jp-Qdl">
-                        <rect key="frame" x="0.0" y="0.0" width="313" height="378"/>
+                        <rect key="frame" x="0.0" y="0.0" width="330" height="520"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <visualEffectView blendingMode="behindWindow" material="dark" state="followsWindowActiveState" translatesAutoresizingMaskIntoConstraints="NO" id="Ikx-wx-bR7">
+                                <rect key="frame" x="0.0" y="0.0" width="330" height="520"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="330" id="5eo-eO-sT9"/>
+                                    <constraint firstAttribute="height" constant="520" id="Huz-5B-XEJ"/>
+                                </constraints>
+                            </visualEffectView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="Ikx-wx-bR7" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="60g-pV-9qQ"/>
+                            <constraint firstItem="Ikx-wx-bR7" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" id="8Ha-S5-U7M"/>
+                            <constraint firstAttribute="bottom" secondItem="Ikx-wx-bR7" secondAttribute="bottom" id="LVU-M8-mSc"/>
+                            <constraint firstAttribute="trailing" secondItem="Ikx-wx-bR7" secondAttribute="trailing" id="sX4-nQ-wKe"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="76" y="715"/>
+            <point key="canvasLocation" x="76" y="891"/>
         </scene>
     </scenes>
 </document>
