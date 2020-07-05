@@ -38,18 +38,49 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		B626E4A624B15119007DE210 /* Backend */ = {
+		B626E4A924B1535C007DE210 /* Frontend */ = {
 			isa = PBXGroup;
 			children = (
+				B626E4AF24B153E1007DE210 /* Swift */,
+				B626E4AE24B153D7007DE210 /* Storyboards */,
 			);
-			path = Backend;
+			name = Frontend;
 			sourceTree = "<group>";
 		};
-		B626E4A724B1513F007DE210 /* Frontend */ = {
+		B626E4AC24B15372007DE210 /* Backend */ = {
 			isa = PBXGroup;
 			children = (
+				B6C8BB832497267B00FD480E /* AppDelegate.swift */,
 			);
-			path = Frontend;
+			name = Backend;
+			sourceTree = "<group>";
+		};
+		B626E4AD24B15378007DE210 /* Misc */ = {
+			isa = PBXGroup;
+			children = (
+				B6C8BB8A2497268100FD480E /* Assets.xcassets */,
+				B6C8BB8F2497268100FD480E /* Info.plist */,
+				B6C8BB902497268100FD480E /* _cv.entitlements */,
+				B6C8BB872497267B00FD480E /* _cv.xcdatamodeld */,
+			);
+			name = Misc;
+			sourceTree = "<group>";
+		};
+		B626E4AE24B153D7007DE210 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				B6C8BB8C2497268100FD480E /* Main.storyboard */,
+			);
+			name = Storyboards;
+			sourceTree = "<group>";
+		};
+		B626E4AF24B153E1007DE210 /* Swift */ = {
+			isa = PBXGroup;
+			children = (
+				9564A37F24B1396100DAD8DC /* WindowController.swift */,
+				B6C8BB852497267B00FD480E /* ViewController.swift */,
+			);
+			name = Swift;
 			sourceTree = "<group>";
 		};
 		B6C8BB772497267B00FD480E = {
@@ -71,16 +102,9 @@
 		B6C8BB822497267B00FD480E /* 3cv */ = {
 			isa = PBXGroup;
 			children = (
-				B6C8BB832497267B00FD480E /* AppDelegate.swift */,
-				B6C8BB852497267B00FD480E /* ViewController.swift */,
-				B6C8BB8A2497268100FD480E /* Assets.xcassets */,
-				B6C8BB8C2497268100FD480E /* Main.storyboard */,
-				9564A37F24B1396100DAD8DC /* WindowController.swift */,
-				B6C8BB8F2497268100FD480E /* Info.plist */,
-				B6C8BB902497268100FD480E /* _cv.entitlements */,
-				B6C8BB872497267B00FD480E /* _cv.xcdatamodeld */,
-				B626E4A724B1513F007DE210 /* Frontend */,
-				B626E4A624B15119007DE210 /* Backend */,
+				B626E4AD24B15378007DE210 /* Misc */,
+				B626E4AC24B15372007DE210 /* Backend */,
+				B626E4A924B1535C007DE210 /* Frontend */,
 			);
 			path = 3cv;
 			sourceTree = "<group>";
