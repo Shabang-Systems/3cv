@@ -10,8 +10,15 @@ import Cocoa
 
 class ViewController: NSViewController {
 
+
+    @IBOutlet var urbadButton: NSButton!
+    var alternateImageThing: NSImage = NSImage(byReferencingFile: "buttonImage.png")!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        urbadButton.insertText("test")
+        urbadButton.alternateImage = alternateImageThing
+
 
         // Do any additional setup after loading the view.
     }
@@ -20,6 +27,9 @@ class ViewController: NSViewController {
         didSet {
         // Update the view, if already loaded.
         }
+    }
+    
+    @IBAction func onClick(_ sender: Any) {
     }
 }
 
