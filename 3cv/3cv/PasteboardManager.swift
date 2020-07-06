@@ -9,37 +9,55 @@
 import Foundation
 import Cocoa
 
-let str = "a string!"
-
 class Clipboard {
+    var prevItem = ""
+    let filename = getDocumentsDirectory().appendingPathComponent("history.txt")
     
     // Set string to clipboard
     let pasteboard = NSPasteboard.general
     
-    
-    
-   
     func readBoard() {
-//        var clipboardItems: [String] = ["filler"]
-//        // Access the item in the clipboard
-//        let firstClipboardItem = clipboardItems[0] // Good Morning
-//
-//        pasteboard.declareTypes([NSPasteboard.PasteboardType.string], owner: nil)
-////        pasteboard.setString("Good Morning", forType: NSPasteboard.PasteboardType.string)
-//
-//        for element in pasteboard.pasteboardItems! {
-//            if let str = element.string(forType: NSPasteboard.PasteboardType(rawValue: "public.utf8-plain-text")) {
-//                clipboardItems.append(str)
-//                print(str)
-//            }
-//        }
-        
 
     }
-
+//    var clear = ""
+    func saveToFile(value: String){
+        if value == prevItem {
+            print("unchanged")
+        } else {
+            prevItem = value
+            do {
+//              try clear.write(to: filename, atomically: true, encoding: String.Encoding.utf8)
+                let fileHandle = try FileHandle(forWritingTo: filename)
+                fileHandle.seekToEndOfFile()
+                fileHandle.write(value.data(using: .utf8)!)
+                fileHandle.closeFile()
+                readFile(value: value)
+            } catch {
+               print("ohnoes")
+            }
+            
+        }
+        
+    }
+    
+    func readFile(value: String){
+        //reading
+        do {
+            let history = try String(contentsOf: filename, encoding: .utf8)
+            print(history)
+        } catch {/* error handling here */}
+    }
 }
 
 
+// file stuff
+func getDocumentsDirectory() -> URL {
+    // find all possible documents directories for this user
+    let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+
+    // just send back the first one, which ought to be the only one
+    return paths[0]
+}
 
 
 

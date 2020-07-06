@@ -27,15 +27,13 @@ class ViewController: NSViewController {
         // Do any additional setup after loading the view.
     }
     
-    
-    
+    var clipboard = Clipboard()
     @objc
     func onPasteboardChanged(_ notification: Notification) {
         guard let pb = notification.object as? NSPasteboard else { return }
         guard let items = pb.pasteboardItems else { return }
         guard let item = items.first?.string(forType: .string) else { return }
-      
-        print(item)
+        clipboard.saveToFile(value: item)
     }
 
     
