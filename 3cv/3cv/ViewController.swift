@@ -18,11 +18,30 @@ class ViewController: NSViewController {
         super.viewDidLoad()
         urbadButton.insertText("test")
         urbadButton.alternateImage = alternateImageThing
-
-
+        
+        
+        // add listener
+        NotificationCenter.default.addObserver(self, selector: #selector(onPasteboardChanged),  name: .NSPasteboardDidChange, object: nil)
+        
+        
         // Do any additional setup after loading the view.
     }
+    
+    
+    
+    @objc
+    func onPasteboardChanged(_ notification: Notification) {
+        guard let pb = notification.object as? NSPasteboard else { return }
+        guard let items = pb.pasteboardItems else { return }
+        guard let item = items.first?.string(forType: .string) else { return }
+      
+        print(item)
+    }
 
+    
+    
+    
+    
     override var representedObject: Any? {
         didSet {
         // Update the view, if already loaded.

@@ -10,10 +10,23 @@ import Cocoa
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
-
+    var timer: Timer!
+    let pasteboard: NSPasteboard = .general
+    var lastChangeCount: Int = 0
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         validateOperatingSystem() // Checks current MacOS version and throws an error if it isn't good enough
+        timer = Timer.scheduledTimer(withTimeInterval: 0.05, repeats: true) { (t) in
+            if self.lastChangeCount != self.pasteboard.changeCount {
+                self.lastChangeCount = self.pasteboard.changeCount
+                NotificationCenter.default.post(name: .NSPasteboardDidChange, object: self.pasteboard)
+            }
+        }
+        
+        
+        var clipboard = Clipboard()
+//        clipboard.readBoard()
+        
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
@@ -23,6 +36,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     enum operatingSystemErrors: Error {
         case InvalidVersion(version: String)
     }
+    
+    
 
     func validateOperatingSystem() {
         if #available(OSX 10.15, *) {
@@ -151,4 +166,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             return .terminateNow
         }
     }
+}
+
+extension NSNotification.Name {
+    public static let NSPasteboardDidChange: NSNotification.Name = .init(rawValue: "pasteboardDidChangeNotification")
 }
