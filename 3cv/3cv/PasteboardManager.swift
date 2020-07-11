@@ -25,17 +25,29 @@ class Clipboard {
 //#########################################################################################
     
     var prevItem = ""
+    let dir = getDocumentsDirectory()
     let filename = getDocumentsDirectory().appendingPathComponent("history.txt")
     func saveToFile(value: String){
         if value == prevItem { print("unchanged") } else {
             prevItem = value
             do {
-                let fileHandle = try FileHandle(forWritingTo: filename)
+                filename.startAccessingSecurityScopedResource()
+                let strdir = try! String(contentsOf: dir).replacingOccurrences(of: "file://", with: "")
+                let items = try FileManager.default.contentsOfDirectory(atPath: strdir)
+                for item in items {
+                    if (item == "history.txt") {
+                        FileManager.default.createFile(atPath: try! String(contentsOf: dir), contents: nil)
+                    }
+                }
+                let fileHandle = try! FileHandle(forWritingTo: filename)
                 fileHandle.seekToEndOfFile()
                 fileHandle.write(value.data(using: .utf8)!)
                 fileHandle.closeFile()
                 readFile(value: value)
-            } catch { print("ohnoes") }
+                filename.stopAccessingSecurityScopedResource()
+            } catch {
+//                print(error)
+            }
         }
     }
     
