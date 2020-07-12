@@ -10,10 +10,10 @@ import Foundation
 import Cocoa
 
 class Filetest {
-    let filename = getDocumentsDirectory().appendingPathComponent("testWrite1.txt")
+    let filename = getDocumentsDirectory().appendingPathComponent("history.txt")
     let str = "Super long string here"
     static func testWrite() {
-        let filename = getDocumentsDirectory().appendingPathComponent("testWrite1.txt")
+        let filename = getDocumentsDirectory().appendingPathComponent("history.txt")
         let str = "Super long string here"
 
         do {
