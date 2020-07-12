@@ -15,9 +15,7 @@ class Clipboard {
     // Set string to clipboard
     let pasteboard = NSPasteboard.general
     
-    func readBoard() {
-
-    }
+    func readBoard() {}
     
     
 //#########################################################################################
@@ -30,17 +28,19 @@ class Clipboard {
         var prevItem = ""
         let dir = getDocumentsDirectory()
         let filename = getDocumentsDirectory().appendingPathComponent("testWrite1.txt")
-        if value == prevItem { print("unchanged") } else {
+        if (value == prevItem) { print("unchanged") } else {
             prevItem = value
             do {
                 //filename.startAccessingSecurityScopedResource()
-                let strdir = try! String(contentsOf: dir).replacingOccurrences(of: "file://", with: "")
-                let items = try FileManager.default.contentsOfDirectory(atPath: strdir)
+//                let strdir = try! String(contentsOf: dir).replacingOccurrences(of: "file://", with: "")
+                print(dir)
+                /*
+                let items = try! FileManager.default.contentsOfDirectory(atPath: String(contentsOf:dir))
                 for item in items {
                     if (item == "testWrite1.txt") {
                         FileManager.default.createFile(atPath: try! String(contentsOf: dir), contents: nil)
                     }
-                }
+                }*/
                 let fileHandle = try! FileHandle(forWritingTo: filename)
                 fileHandle.seekToEndOfFile()
                 fileHandle.write(value.data(using: .utf8)!)
@@ -53,7 +53,7 @@ class Clipboard {
         }
     }
     
-    static func readFile(value: String){
+    static func readFile(value: String) {
         let filename = getDocumentsDirectory().appendingPathComponent("testWrite1.txt")
         do {
             let history = try String(contentsOf: filename, encoding: .utf8)
