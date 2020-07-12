@@ -26,29 +26,29 @@ class Clipboard {
     
     var prevItem = ""
     let dir = getDocumentsDirectory()
-    let filename = getDocumentsDirectory().appendingPathComponent("history.txt")
+    let filename = getDocumentsDirectory().appendingPathComponent("historytest.txt")
     func saveToFile(value: String){
-        if value == prevItem { print("unchanged") } else {
-            prevItem = value
-            do {
-                filename.startAccessingSecurityScopedResource()
-                let strdir = try! String(contentsOf: dir).replacingOccurrences(of: "file://", with: "")
-                let items = try FileManager.default.contentsOfDirectory(atPath: strdir)
-                for item in items {
-                    if (item == "history.txt") {
-                        FileManager.default.createFile(atPath: try! String(contentsOf: dir), contents: nil)
-                    }
-                }
-                let fileHandle = try! FileHandle(forWritingTo: filename)
-                fileHandle.seekToEndOfFile()
-                fileHandle.write(value.data(using: .utf8)!)
-                fileHandle.closeFile()
-                readFile(value: value)
-                filename.stopAccessingSecurityScopedResource()
-            } catch {
-//                print(error)
-            }
-        }
+//        if value == prevItem { print("unchanged") } else {
+//            prevItem = value
+//            do {
+//                filename.startAccessingSecurityScopedResource()
+//                let strdir = try! String(contentsOf: dir).replacingOccurrences(of: "file://", with: "")
+//                let items = try FileManager.default.contentsOfDirectory(atPath: strdir)
+//                for item in items {
+//                    if (item == "historytest.txt") {
+//                        FileManager.default.createFile(atPath: try! String(contentsOf: dir), contents: nil)
+//                    }
+//                }
+//                let fileHandle = try! FileHandle(forWritingTo: filename)
+//                fileHandle.seekToEndOfFile()
+//                fileHandle.write(value.data(using: .utf8)!)
+//                fileHandle.closeFile()
+//                readFile(value: value)
+//                filename.stopAccessingSecurityScopedResource()
+//            } catch {
+////                print(error)
+//            }
+//        }
     }
     
     func readFile(value: String){
