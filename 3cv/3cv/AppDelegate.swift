@@ -26,7 +26,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         var clipboard = Clipboard()
 //        clipboard.readBoard()
-        Filetest.testWrite()
+//        Filetest.testWrite()
     }
     
 

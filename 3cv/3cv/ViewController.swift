@@ -33,7 +33,7 @@ class ViewController: NSViewController {
         guard let pb = notification.object as? NSPasteboard else { return }
         guard let items = pb.pasteboardItems else { return }
         guard let item = items.first?.string(forType: .string) else { return }
-        Clipboard.saveToFile(value: item)
+        clipboard.saveToFile(value: item)
     }
 
     
