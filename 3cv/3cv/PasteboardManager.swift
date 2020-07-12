@@ -27,13 +27,13 @@ class Clipboard {
     static func saveToFile(value: String) {
         var prevItem = ""
         let dir = getDocumentsDirectory()
-        let filename = getDocumentsDirectory().appendingPathComponent("testWrite1.txt")
+        let filename = getDocumentsDirectory().appendingPathComponent("testWrite2.txt")
         if (value == prevItem) { print("unchanged") } else {
             prevItem = value
             do {
                 //filename.startAccessingSecurityScopedResource()
 //                let strdir = try! String(contentsOf: dir).replacingOccurrences(of: "file://", with: "")
-                print(dir)
+//                print(dir)
                 /*
                 let items = try! FileManager.default.contentsOfDirectory(atPath: String(contentsOf:dir))
                 for item in items {
@@ -41,10 +41,13 @@ class Clipboard {
                         FileManager.default.createFile(atPath: try! String(contentsOf: dir), contents: nil)
                     }
                 }*/
-                let fileHandle = try! FileHandle(forWritingTo: filename)
-                fileHandle.seekToEndOfFile()
-                fileHandle.write(value.data(using: .utf8)!)
-                fileHandle.closeFile()
+                
+//                let fileHandle = try! FileHandle(forWritingTo: filename)
+//                fileHandle.seekToEndOfFile()
+//                fileHandle.write(value.data(using: .utf8)!)
+//                fileHandle.closeFile()
+                try value.write(to: filename, atomically: true, encoding: String.Encoding.utf8)
+                
                 readFile(value: value)
                 //filename.stopAccessingSecurityScopedResource()
             } catch {
@@ -54,7 +57,7 @@ class Clipboard {
     }
     
     static func readFile(value: String) {
-        let filename = getDocumentsDirectory().appendingPathComponent("testWrite1.txt")
+        let filename = getDocumentsDirectory().appendingPathComponent("testWrite2.txt")
         do {
             let history = try String(contentsOf: filename, encoding: .utf8)
             print(history)
