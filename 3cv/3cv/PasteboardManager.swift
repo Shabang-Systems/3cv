@@ -21,11 +21,10 @@ class Clipboard {
     var fileCache = [String]()
     
     
-    
-    func initialize() {
-        
+    // Made constructor since this allows setup to be run when it should
+    init() {
         // just for ssafety (and testing), clear the array
-        fileCache = [String]()
+        fileCache = [String]() // TODO remove (not required)
         
          // loop through file paths, and append to fileCache array
         for file in getContentOfDir(path: fileDir) {
@@ -52,8 +51,6 @@ class Clipboard {
                 try value.write(to: filename, atomically: true, encoding: String.Encoding.utf8)
             
                 // this is just here for tests right now
-                initialize()
-                
             } catch { print("error") }
         }
     }
