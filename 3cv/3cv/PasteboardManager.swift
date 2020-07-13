@@ -21,19 +21,35 @@ class Clipboard {
     var documents: [Any]?
     var clipboardHistory = [String]()
     
-    
+//
+//    // Made constructor since this allows setup to be run when it should
+//    init() {
+//        clipboardHistory = [String]() // TODO remove (not required)
+//        documents = getContentOfDir(path: fileDir)
+//         // loop through file paths, and append toy fileCache array
+//        for file in documents! {
+//            let fileContents = readFile(path: file as! URL)
+//            if (fileContents != "error") {
+//                clipboardHistory.append(readFile(path: file as! URL))
+//            }
+//        }
+//        print(clipboardHistory)
+//    }
+//
     // Made constructor since this allows setup to be run when it should
     init() {
-        clipboardHistory = [String]() // TODO remove (not required)
+//        clipboardHistory = [String]() // TODO remove (not required)
         documents = getContentOfDir(path: fileDir)
-         // loop through file paths, and append toy fileCache array
-        for file in documents! {
-            let fileContents = readFile(path: file as! URL)
-            if (fileContents != "error") {
-                clipboardHistory.append(readFile(path: file as! URL))
-            }
-        }
-        print(clipboardHistory)
+//         // loop through file paths, and append toy fileCache array
+//        for file in documents! {
+//            let extenstion = (file as AnyObject).absoluteURL?.pathExtension
+//            if extenstion == "eer" {
+//    //                print(file)
+//    //                let fileContents = readFile(path: file as! URL)
+//                clipboardHistory.append(readFile(path: file as! URL))
+//            }
+//        }
+//    //        print(clipboardHistory)
     }
     
 
@@ -46,10 +62,11 @@ class Clipboard {
         // update list of current documents
         documents = getContentOfDir(path: fileDir) // TODO delete
         if value != prevItem {
-            var latestFilePath = documents?[documents!.count] as! String
+            var latestFilePath = URL(string: documents?[documents!.count-1] as! String)
             do {
                 let strdir = dir.absoluteString
-                latestFile = latestFilePath.replacingOccurrences(of: strdir, with: "")
+                
+                let latestFile = latestFilePath!.absoluteString.replacingOccurrences(of: strdir, with: "").replacingOccurrences(of: ".eer", with: "")
                 let newFilePath = URL(string: String(Int(latestFile)!+1))
                 //var test = newFilePath.absouluteURL()
                 try value.write(to: newFilePath!, atomically: true, encoding: String.Encoding.utf8)
@@ -86,11 +103,26 @@ class Clipboard {
     
     // gives array of filenames in specified directory
     func getContentOfDir(path: URL) -> Array<Any> {
+        var filteredDirContents = [String]()
         
         // get array of file paths in directory
         let directoryContents = try! FileManager.default.contentsOfDirectory(at: path, includingPropertiesForKeys: nil, options: [])
-        return directoryContents
         
+        for file in directoryContents {
+            if file.absoluteString.contains("eer") {
+                filteredDirContents.append(file.absoluteString)
+            }
+            
+//            let ext = (file as AnyObject).absoluteURL?.pathExtension
+//            if ext == "eer" {
+            
+//            if file.absoluteString.contains("eer") {
+                
+//            }
+//            }
+        
+        }
+        return filteredDirContents
     }
 }
 
