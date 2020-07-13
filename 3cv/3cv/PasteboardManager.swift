@@ -18,23 +18,22 @@ class Clipboard {
     let dir = getDocumentsDirectory()
     let filename = getDocumentsDirectory().appendingPathComponent(manageFileNaming(value: "fileNameTest1"))
     let fileDir = getDocumentsDirectory()
-    var fileCache = [String]()
+    var documents: [Any]?
+    var clipboardHistory = [String]()
     
     
     // Made constructor since this allows setup to be run when it should
     init() {
-        // just for ssafety (and testing), clear the array
-        fileCache = [String]() // TODO remove (not required)
-        
-         // loop through file paths, and append to fileCache array
-        for file in getContentOfDir(path: fileDir) {
+        clipboardHistory = [String]() // TODO remove (not required)
+        documents = getContentOfDir(path: fileDir)
+         // loop through file paths, and append toy fileCache array
+        for file in documents! {
             let fileContents = readFile(path: file as! URL)
             if (fileContents != "error") {
-                fileCache.append(readFile(path: file as! URL))
+                clipboardHistory.append(readFile(path: file as! URL))
             }
         }
-        print(fileCache)
-
+        print(clipboardHistory)
     }
     
 
@@ -44,15 +43,32 @@ class Clipboard {
 
     // SAVE to a file
     func saveToFile(value: String) {
-        // only save if item differs previous item
-        if (value == prevItem) { // TODO delete and change to if value != prevItem for efficiency
+        // update list of current documents
+        documents = getContentOfDir(path: fileDir) // TODO delete
+        if value != prevItem {
+            var latestFilePath = documents?[documents!.count] as! String
+            do {
+                let strdir = dir.absoluteString
+                latestFile = latestFilePath.replacingOccurrences(of: strdir, with: "")
+                let newFilePath = URL(string: String(Int(latestFile)!+1))
+                //var test = newFilePath.absouluteURL()
+                try value.write(to: newFilePath!, atomically: true, encoding: String.Encoding.utf8)
+            } catch {
+                // bruh bruh bruh bruh
+            }
+            prevItem = value
+        } else {
             print("unchanged")
-        } else { prevItem = value; do {
-                // write value to file
-                try value.write(to: filename, atomically: true, encoding: String.Encoding.utf8)
-                // this is just here for tests right now
-            } catch { print("error") }
         }
+//        // only save if item differs previous item
+//        if (value == prevItem) { // TODO delete and change to if value != prevItem for efficiency
+//            print("unchanged")
+//        } else { prevItem = value; do {
+//                // write value to file
+//                try value.write(to: filename, atomically: true, encoding: String.Encoding.utf8)
+//                // this is just here for tests right now
+//            } catch { print("error") }
+//        }
     }
 
     // READ from a file
@@ -76,10 +92,6 @@ class Clipboard {
         return directoryContents
         
     }
-    
-    
-    
-    
 }
 
 
@@ -98,7 +110,7 @@ func getDocumentsDirectory() -> URL {
 //idk how to swift man
 
 func manageFileNaming(value: String) -> String {
-    
+
     // idk man.
     return value
 }
