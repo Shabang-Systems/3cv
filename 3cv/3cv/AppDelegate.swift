@@ -13,6 +13,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var timer: Timer!
     let pasteboard: NSPasteboard = .general
     var lastChangeCount: Int = 0
+    var clipboard: Clipboard?
+
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         validateOperatingSystem() // Checks current MacOS version and throws an error if it isn't good enough
@@ -22,8 +24,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 NotificationCenter.default.post(name: .NSPasteboardDidChange, object: self.pasteboard)
             }
         }
-        
-        
         var clipboard = Clipboard()
 //        clipboard.readBoard()
 //        Filetest.testWrite()

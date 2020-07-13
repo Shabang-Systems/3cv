@@ -28,10 +28,10 @@ class Clipboard {
         
          // loop through file paths, and append to fileCache array
         for file in getContentOfDir(path: fileDir) {
-//            if !(file as AnyObject).contains("iChats") {
-//            print((file as AnyObject).contains("/"))
-//            }
-            fileCache.append(readFile(path: file as! URL))
+            let fileContents = readFile(path: file as! URL)
+            if (fileContents != "error") {
+                fileCache.append(readFile(path: file as! URL))
+            }
         }
         print(fileCache)
 
@@ -45,11 +45,11 @@ class Clipboard {
     // SAVE to a file
     func saveToFile(value: String) {
         // only save if item differs previous item
-        if (value == prevItem) { print("unchanged") } else { prevItem = value; do {
-            
+        if (value == prevItem) { // TODO delete and change to if value != prevItem for efficiency
+            print("unchanged")
+        } else { prevItem = value; do {
                 // write value to file
                 try value.write(to: filename, atomically: true, encoding: String.Encoding.utf8)
-            
                 // this is just here for tests right now
             } catch { print("error") }
         }
@@ -59,15 +59,13 @@ class Clipboard {
     func readFile(path: URL) -> String {
         
         do {
-            
             // get contents of file
             let history = try String(contentsOf: path, encoding: .utf8)
             return history
-
-        } catch { print("broke at \(path)") }
-        
-        // swift bad
-        return ""
+        } catch {
+            print("broke at \(path)")
+            return "error"
+        }
     }
     
     // gives array of filenames in specified directory
