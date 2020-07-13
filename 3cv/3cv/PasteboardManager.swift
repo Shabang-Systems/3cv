@@ -18,6 +18,23 @@ class Clipboard {
     let dir = getDocumentsDirectory()
     let filename = getDocumentsDirectory().appendingPathComponent("testWrite2.txt")
     let fileDir = getDocumentsDirectory()
+    var fileCache = [String]()
+    
+    
+    
+    func initialize() {
+        
+        // just for ssafety (and testing), clear the array
+        fileCache = [String]()
+        
+         // loop through file paths, and append to fileCache array
+        for file in getContentOfDir(path: fileDir) {
+            fileCache.append(readFile(path: file as! URL))
+        }
+        print(fileCache)
+
+    }
+    
 
 //#########################################################################################
 //# FILE MANAGEMENT #
@@ -30,39 +47,37 @@ class Clipboard {
             
                 // write value to file
                 try value.write(to: filename, atomically: true, encoding: String.Encoding.utf8)
-//                readFile(value: value)
+            
                 // this is just here for tests right now
-                getContentOfDir(path: fileDir)
+                initialize()
                 
             } catch { print("error") }
         }
     }
 
     // READ from a file
-    func readFile(value: String) {
+    func readFile(path: URL) -> String {
         
         do {
             
             // get contents of file
-            let history = try String(contentsOf: filename, encoding: .utf8)
-            print(history)
-            
-        } catch { print("ohnoes, dos") }
+            let history = try String(contentsOf: path, encoding: .utf8)
+            return history
+
+        } catch { print("broke at \(path)") }
+        
+        // swift bad
+        return ""
     }
     
     // gives array of filenames in specified directory
-    func getContentOfDir(path: URL) {
+    func getContentOfDir(path: URL) -> Array<Any> {
         
+        // get array of file paths in directory
         let directoryContents = try! FileManager.default.contentsOfDirectory(at: path, includingPropertiesForKeys: nil, options: [])
-        
-        for file in directoryContents {
-             //TBI: read each file, push to array
-            print("Found \(file)")
-        }
+        return directoryContents
         
     }
-    
-    
     
     
     
