@@ -16,7 +16,7 @@ class Clipboard {
     let pasteboard = NSPasteboard.general
     var prevItem = ""
     let dir = getDocumentsDirectory()
-    let filename = getDocumentsDirectory().appendingPathComponent("testWrite2.txt")
+    let filename = getDocumentsDirectory().appendingPathComponent(manageFileNaming(value: "fileNameTest1"))
     let fileDir = getDocumentsDirectory()
     var fileCache = [String]()
     
@@ -29,6 +29,9 @@ class Clipboard {
         
          // loop through file paths, and append to fileCache array
         for file in getContentOfDir(path: fileDir) {
+//            if !(file as AnyObject).contains("iChats") {
+//            print((file as AnyObject).contains("/"))
+//            }
             fileCache.append(readFile(path: file as! URL))
         }
         print(fileCache)
@@ -94,4 +97,14 @@ func getDocumentsDirectory() -> URL {
     return paths[0]
 }
 
+
 //#########################################################################################
+
+//idk how to swift man
+
+func manageFileNaming(value: String) -> String {
+    
+    // idk man.
+    return value
+}
+
