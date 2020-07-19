@@ -151,3 +151,38 @@ func manageFileNaming(value: String) -> String {
     return value
 }
 
+
+//#########################################################################################
+//# PLAN #
+//#########################################################################################
+
+//#############
+//# STARTUP #
+//#############
+
+//# loop though pickled array of filenames (arfile)
+//# append contents of file in arfile to array
+
+
+
+//#####################
+//# CLIPBOARD CHANGE #
+//#####################
+
+//# create file with copied value
+//# push file path to arfile
+//# push value to array
+
+
+//###########
+//# SELECT #
+//###########
+
+//# set clipboard to value selected from array (runs clipboard change)
+//# delete corresponding file at file path in arfile
+//# delete filepath
+//# delete value in array
+//# trigger cmd-v
+
+//# order?
+
