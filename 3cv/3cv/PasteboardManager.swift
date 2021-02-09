@@ -62,14 +62,18 @@ class Clipboard {
         // update list of current documents
         documents = getContentOfDir(path: fileDir) // TODO delete
         if value != prevItem {
-            var latestFilePath = URL(string: documents?[documents!.count-1] as! String)
+            var latestFilePath = (documents as! [String]).sorted(by: >)[0]
+            print(latestFilePath)
+//            print(documents! as Int.sorted(by: >))
+//            print(latestFilePath)
             do {
                 let strdir = dir.absoluteString
                 
-                let latestFile = latestFilePath!.absoluteString.replacingOccurrences(of: strdir, with: "").replacingOccurrences(of: ".eer", with: "")
-                let newFilePath = URL(string: String(Int(latestFile)!+1))
-                //var test = newFilePath.absouluteURL()
-                try value.write(to: newFilePath!, atomically: true, encoding: String.Encoding.utf8)
+                let latestFile = (latestFilePath.replacingOccurrences(of: strdir, with: "") as AnyObject).replacingOccurrences(of: ".eer", with: "")
+//                print(latestFile)
+                let newFilePath = URL(string: strdir+(String(Int(latestFile)!+1)+".eer"))!
+                print(newFilePath)
+                try value.write(to: newFilePath, atomically: true, encoding: String.Encoding.utf8)
             } catch {
                 // bruh bruh bruh bruh
             }
@@ -147,4 +151,39 @@ func manageFileNaming(value: String) -> String {
     // idk man.
     return value
 }
+
+
+//#########################################################################################
+//# PLAN #
+//#########################################################################################
+
+//#############
+//# STARTUP #
+//#############
+
+//# loop though pickled array of filenames (arfile)
+//# append contents of file in arfile to array
+
+
+
+//#####################
+//# CLIPBOARD CHANGE #
+//#####################
+
+//# create file with copied value
+//# push file path to arfile
+//# push value to array
+
+
+//###########
+//# SELECT #
+//###########
+
+//# set clipboard to value selected from array (runs clipboard change)
+//# delete corresponding file at file path in arfile
+//# delete filepath
+//# delete value in array
+//# trigger cmd-v
+
+//# order?
 
