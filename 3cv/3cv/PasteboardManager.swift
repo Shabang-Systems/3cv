@@ -107,11 +107,12 @@ class Clipboard {
         
         // get array of file paths in directory
         let directoryContents = try! FileManager.default.contentsOfDirectory(at: path, includingPropertiesForKeys: nil, options: [])
-        
+        print(directoryContents)
         for file in directoryContents {
             if file.absoluteString.contains("eer") {
                 filteredDirContents.append(file.absoluteString)
             }
+            
             
 //            let ext = (file as AnyObject).absoluteURL?.pathExtension
 //            if ext == "eer" {
@@ -138,7 +139,7 @@ func getDocumentsDirectory() -> URL {
 
 
 //#########################################################################################
-
+// TODO cleanup (the most useful function ever)
 //idk how to swift man
 
 func manageFileNaming(value: String) -> String {
